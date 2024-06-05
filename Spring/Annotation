@@ -1,1 +1,8 @@
+### 어노테이션이란?
 
+어노테이션은 다른 프로그램에게 유용한 정보를 제공하기 위해 사용되는 것으로 주석과 같은 의미를 가진다.
+
+### 주요 어노테이션
+
+- 의존성을 주입해주기 위해서 생성자(Constructor), Setter, Field 타입의 방식을 사용해야 했다. 하지만 lombok(롬복)의 **@RequiredArgsConstructor** 어노테이션을 사용하면 간단한 방법으로 생성자 주입을 해줄 수 있다.
+- **@RestController**이란? @Controller에 @ResponseBody가 추가된 것이다.
