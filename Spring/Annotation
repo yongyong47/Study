@@ -1,8 +1,12 @@
-### 어노테이션이란?
+@RestController
+Spring에서 Controller 중 View로 응답하지 않는 Controller를 의미한다.
+method의 반환 결과를 JSON 형태로 반환한다.
 
-어노테이션은 다른 프로그램에게 유용한 정보를 제공하기 위해 사용되는 것으로 주석과 같은 의미를 가진다.
+@RestController가 적혀있는 Controller의 method는 HttpResponse로 바로 응답이 가능하다.
+@ResponseBody 역할을 자동적으로 해주는 어노테이션이다.
 
-### 주요 어노테이션
+@Repository
+DAO class에서 쓰이는 어노테이션이다.
+DB에 접근하는 method를 가지고 있는 Class에서 쓰인다.
 
-- 의존성을 주입해주기 위해서 생성자(Constructor), Setter, Field 타입의 방식을 사용해야 했다. 하지만 lombok(롬복)의 **@RequiredArgsConstructor** 어노테이션을 사용하면 간단한 방법으로 생성자 주입을 해줄 수 있다.
-- **@RestController**이란? @Controller에 @ResponseBody가 추가된 것이다.
+
