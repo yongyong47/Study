@@ -1,1 +1,32 @@
+package com.example.studentcrud;
 
+import com.example.studentcrud.service.CreateStudentService;
+import com.example.studentcrud.service.DeleteStudentService;
+import com.example.studentcrud.service.UpdateStudentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+@RequiredArgsConstructor
+@RequestMapping("/Student")
+@RestController
+public class Controller {
+
+    private final CreateStudentService createStudentService;
+    private final DeleteStudentService deleteStudentService;
+    private final UpdateStudentService updateStudentService;
+
+    @PostMapping("/save")
+    public void createStudent(@RequestBody StudentRequest studentRequest) {
+        CreateStudentService.saveStudent(studentRequest);
+    }
+
+    @PutMapping("/update")
+    public void updateStudent(@RequestBody StudentRequest studentRequest) {
+        UpdateStudentService.updateStudent(studentRequest);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteStudent(@RequestBody StudentRequest studentRequest) {
+        DeleteStudentService.deleteStudent(studentRequest);
+    }
+}
