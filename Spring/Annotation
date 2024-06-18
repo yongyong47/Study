@@ -1,12 +1,1 @@
-@RestController
-Spring에서 Controller 중 View로 응답하지 않는 Controller를 의미한다.
-method의 반환 결과를 JSON 형태로 반환한다.
-
-@RestController가 적혀있는 Controller의 method는 HttpResponse로 바로 응답이 가능하다.
-@ResponseBody 역할을 자동적으로 해주는 어노테이션이다.
-
-@Repository
-DAO class에서 쓰이는 어노테이션이다.
-DB에 접근하는 method를 가지고 있는 Class에서 쓰인다.
-
 
