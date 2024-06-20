@@ -1,0 +1,14 @@
+package com.example.studentcrud.dto.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+import java.util.List;
+
+@Getter
+@AllArgsConstructor
+public class StudentListResponse {
+    private final List<StudentElement> studentList; // [StudentElement, StudentElement, StudentELement]
+    // StudentELement 안을 까보면 (id, age, name) -> [(id, age, name), (id, age, name), (id, age, name)]
+}
+
