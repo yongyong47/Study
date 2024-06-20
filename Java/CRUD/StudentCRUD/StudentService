@@ -1,0 +1,61 @@
+package com.example.studentcrud;
+
+import com.example.studentcrud.dto.request.StudentRequest;
+import com.example.studentcrud.dto.response.StudentElement;
+import com.example.studentcrud.dto.response.StudentListResponse;
+import com.example.studentcrud.dto.response.StudentNameResponse;
+import com.example.studentcrud.dto.response.StudentOneResponse;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class StudentService {
+    private final StudentRepository studentRepository;
+
+    public void save(StudentRequest request) {
+        studentRepository.save(new Student(request.getName(), request.getAge()));
+    }
+
+    @Transactional
+    public void update(StudentRequest request, int studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(RuntimeException::new);//id를 조회해서 만약에 찾는 id의 값이 없다면 런타임에러를 발생시키고,존재한다면 id 값을 통해 찾는다.
+        student.update(request.getName(), request.getAge()); // 변경 감지, 영속성 컨텍스트, 트랜잭션, 플러시
+    }
+
+    public void delete(int studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(RuntimeException::new);
+        studentRepository.delete(student);
+    }
+
+    public StudentOneResponse read(int studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(RuntimeException::new);
+        return new StudentOneResponse(
+                student.getId(),
+                student.getAge(),
+                student.getName()
+        );
+    }
+
+    public StudentListResponse getAllStudentList() {
+        List<Student> studentList = studentRepository.findAll();
+
+        List<StudentElement> response = studentList
+                .stream()
+                .map(s -> new StudentElement(s.getId(), s.getAge(), s.getName()))
+                .toList();
+
+        return new StudentListResponse(response);
+    }
+
+    public StudentNameResponse readname(String name) {
+        Student student = studentRepository.findByName(name).orElseThrow(RuntimeException::new);
+        return new StudentNameResponse(
+                student.getAge(),
+                student.getName()
+        );
+    }
+}
