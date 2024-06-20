@@ -1,0 +1,15 @@
+package com.example.studentcrud;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface StudentRepository extends CrudRepository<Student, Integer> {
+    //제네릭공부하기
+    List<Student> findAll();
+
+    Optional<Student> findByName(String name);
+}
