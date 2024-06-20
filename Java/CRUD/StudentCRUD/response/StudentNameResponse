@@ -1,0 +1,11 @@
+package com.example.studentcrud.dto.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class StudentNameResponse {
+    private final int age;
+    private final String name;
+}
