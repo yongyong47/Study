@@ -1,0 +1,45 @@
+package com.example.studentcrud;
+
+import com.example.studentcrud.dto.request.StudentRequest;
+import com.example.studentcrud.dto.response.StudentListResponse;
+import com.example.studentcrud.dto.response.StudentNameResponse;
+import com.example.studentcrud.dto.response.StudentOneResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+@RequiredArgsConstructor
+@RestController
+public class Controller {
+
+    private final StudentService studentService;
+
+    @PostMapping
+    public void save(@RequestBody StudentRequest request) {
+        studentService.save(request);
+    }
+
+    @PutMapping("/{student-id}")
+    public void update(@RequestBody StudentRequest request, @PathVariable("student-id") int studentId) {
+        studentService.update(request, studentId);
+    }
+
+    @DeleteMapping("/{student-id}")
+    public void delete(@PathVariable("student-id") int studentId) {
+        studentService.delete(studentId);
+    }
+
+    @GetMapping("/{student-id}")
+    public StudentOneResponse read(@PathVariable("student-id") int studentId) {
+        return studentService.read(studentId);
+    }
+
+    @GetMapping("/all")
+    public StudentListResponse getAllStudentList() {
+        return studentService.getAllStudentList();
+    }
+
+    @GetMapping("/read/{name}")
+    public StudentNameResponse readname(@PathVariable("name") String name){
+        return studentService.readname(name);
+    }
+}
